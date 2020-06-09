@@ -2,7 +2,7 @@
 # !@time: 2020-06-07 01:37
 # !@author: superMC @email: 18758266469@163.com
 # !@fileName: 338.py
-import json
+from tools.utils import integerListToString
 
 
 class Solution:
@@ -28,12 +28,6 @@ class Solution:
                 dp[i] = dp[i - 1] + 1
 
         return dp
-
-
-def integerListToString(nums, len_of_list=None):
-    if not len_of_list:
-        len_of_list = len(nums)
-    return json.dumps(nums[:len_of_list])
 
 
 def main():
