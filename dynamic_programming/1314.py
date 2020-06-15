@@ -5,6 +5,8 @@
 import numpy as np
 from scipy import signal
 
+from tools.utils import prefixAnd
+
 '''
 给你一个 m * n 的矩阵 mat 和一个整数 K ，请你返回一个矩阵 answer ，
 其中每个 answer[i][j] 是所有满足下述条件的元素 mat[r][c] 的和： 
@@ -23,10 +25,7 @@ class Solution:
 
     def matrixBlockSum_DP(self, mat: list, K: int) -> list:
         m, n = len(mat), len(mat[0])
-        P = [[0] * (n + 1) for _ in range(m + 1)]
-        for i in range(1, m + 1):
-            for j in range(1, n + 1):
-                P[i][j] = P[i - 1][j] + P[i][j - 1] - P[i - 1][j - 1] + mat[i - 1][j - 1]
+        P = prefixAnd(m, n, mat)
 
         def get(x, y):
             x = max(min(x, m), 0)
