@@ -2,6 +2,13 @@
 # !@time: 2020/6/9 08 56
 # !@author: superMC @email: 18758266469@163.com
 # !@fileName: 1292.py
+
+"""
+给你一个大小为 m x n 的矩阵 mat 和一个整数阈值 threshold。
+
+请你返回元素总和小于或等于阈值的正方形区域的最大边长；如果没有这样的正方形区域，则返回 0 。
+
+"""
 from typing import List
 
 from tools.utils import prefixAnd
