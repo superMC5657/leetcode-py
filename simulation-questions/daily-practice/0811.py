@@ -31,7 +31,7 @@ class Solution:
 
     def waysToChange_math(self, n: int) -> int:
         n = n // 5
-        ans = 0.
+        ans = 0
         while n >= 0:
             ans = (ans + (n // 2 + 1) * ((n + 1) // 2 + 1))
             n -= 5
