@@ -1,2 +1,5 @@
 .idea
 */__pycache__
+leetcode/editor/cn/*.json
+leetcode/editor/cn/*.md
+/leetcode/editor/cn/doc/

@@ -37,9 +37,33 @@
 #  👍 1046 👎 0
 
 from typing import List
+
+
 # leetcode submit region begin(Prohibit modification and deletion)
 class Solution:
     def rob(self, nums: List[int]) -> int:
+        if not nums:
+            return 0
+        nums_len = len(nums)
+        if nums_len == 1:
+            return nums[0]
+
+        dp = [0] * nums_len  # 最大偷窃到的金额
+        dp[0] = nums[0]
+        dp[1] = nums[1] if nums[1] > nums[0] else nums[0]
+        if nums_len == 2:
+            return dp[1]
+        for i in range(2, nums_len):
+            this_choose = dp[i - 2] + nums[i]
+            if this_choose > dp[i - 1]:
+                dp[i] = this_choose
+            else:
+                dp[i] = dp[i - 1]
+        return dp[-1]
+
+
 # leetcode submit region end(Prohibit modification and deletion)
 
-        pass
+if __name__ == '__main__':
+    ret = Solution().rob([2, 7, 9, 3, 1])
+    print(ret)
