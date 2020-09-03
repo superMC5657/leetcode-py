@@ -30,9 +30,50 @@
 #  👍 488 👎 0
 
 from typing import List
+
+
 # leetcode submit region begin(Prohibit modification and deletion)
 class Solution:
+    def numDecodings_self(self, s: str) -> int:
+        if s[0] == '0':
+            return 0
+        s_len = len(s)
+        dp = [[] for i in range(s_len)]
+        dp[0].append(int(s[0]))
+        for i in range(1, s_len):
+            num = int(s[i])
+            for m in dp[i - 1]:
+                if isinstance(m, int):
+                    m = [m]
+                if num == 0:
+                    pass
+                else:
+                    dp[i].append(m + [num])
+                first, second = divmod(m[-1], 10)
+                if first == 0 and 0 < second and second * 10 + num <= 26:
+                    dp[i].append(m[:-1] + [(second * 10 + num)])
+        return len(dp[s_len - 1])
+
     def numDecodings(self, s: str) -> int:
+        size = len(s)
+        # 特判
+        if size == 0:
+            return 0
+        dp = [0] * (size + 1)
+        dp[0] = 1
+        for i in range(1, size + 1):
+            t = int(s[i - 1])
+            if 1 <= t <= 9:
+                dp[i] += dp[i - 1]  # 最后一个数字解密成一个字母
+            if i >= 2:  # 下面这种情况至少要有两个字符
+                t = int(s[i - 2:i])
+                if 10 <= t <= 26:
+                    dp[i] += dp[i - 2]  # 最后两个数字解密成一个一个字母
+        return dp[-1]
+
+
 # leetcode submit region end(Prohibit modification and deletion)
 
-        pass
+if __name__ == '__main__':
+    s = 4757562545844617494555774581341211511296816786586787755257741178599337186486723247528324612117156948
+    print(Solution().numDecodings(s=str(100)))
