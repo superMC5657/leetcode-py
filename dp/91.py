@@ -56,19 +56,24 @@ class Solution:
 
     def numDecodings(self, s: str) -> int:
         size = len(s)
+        if s[0] == '0':
+            return 0
         # 特判
         if size == 0:
             return 0
-        dp = [0] * (size + 1)
+        dp = [0] * size
         dp[0] = 1
-        for i in range(1, size + 1):
-            t = int(s[i - 1])
+        for i in range(1, size):
+            t = int(s[i])
             if 1 <= t <= 9:
                 dp[i] += dp[i - 1]  # 最后一个数字解密成一个字母
-            if i >= 2:  # 下面这种情况至少要有两个字符
-                t = int(s[i - 2:i])
+            if i >= 1:  # 下面这种情况至少要有两个字符
+                t = int(s[i - 1:i + 1])
                 if 10 <= t <= 26:
-                    dp[i] += dp[i - 2]  # 最后两个数字解密成一个一个字母
+                    if i == 1:
+                        dp[i] += 1
+                    else:
+                        dp[i] += dp[i - 2]  # 最后两个数字解密成一个一个字母
         return dp[-1]
 
 
@@ -76,4 +81,4 @@ class Solution:
 
 if __name__ == '__main__':
     s = 4757562545844617494555774581341211511296816786586787755257741178599337186486723247528324612117156948
-    print(Solution().numDecodings(s=str(100)))
+    print(Solution().numDecodings(s=str(s)))
