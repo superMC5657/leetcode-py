@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-# 2020-09-05 05:28:52
+# !@time: 2020-09-08 20:25:11
 # !@author: superMC @email: 18758266469@163.com
-# !@title: longest-increasing-subsequence.py
+# !@question title: longest-increasing-subsequence
 
 # 给定一个无序的整数数组，找到其中最长上升子序列的长度。 
 # 
@@ -20,13 +20,26 @@
 # 
 #  进阶: 你能将算法的时间复杂度降低到 O(n log n) 吗? 
 #  Related Topics 二分查找 动态规划 
-#  👍 950 👎 0
+#  👍 960 👎 0
 
 from typing import List
+
+
 # leetcode submit region begin(Prohibit modification and deletion)
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
-        
-# leetcode submit region end(Prohibit modification and deletion)
+        if not nums:
+            return 0
+        dp = []
+        for i in range(len(nums)):
+            dp.append(1)
+            for j in range(i):
+                if nums[i] > nums[j]:
+                    dp[i] = max(dp[i], dp[j] + 1)
+        return max(dp)
 
-        pass
+
+# leetcode submit region end(Prohibit modification and deletion)
+if __name__ == '__main__':
+    ret = Solution().lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18])
+    print(ret)
