@@ -40,7 +40,7 @@ class Solution:
             cnt[ch] -= 1
             if cnt[ch] == 0:
                 n += 1
-            while s[l] not in cnt or cnt[s[l]] < 0:  # 看看当前 l 处的字母是否必要，没必要 l 就加以
+            while s[l] not in cnt or cnt[s[l]] < 0:  # 看看当前 l 处的字母是否必要，没必要 l 就加1
                 if s[l] in cnt:
                     cnt[s[l]] += 1
                 l += 1
