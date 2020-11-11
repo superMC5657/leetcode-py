@@ -37,7 +37,7 @@ from typing import List
 
 import numpy as np
 from scipy.optimize import linear_sum_assignment as linear_assignment
-双指针
+
 
 def compute(A, B):
     len_A = len(A)

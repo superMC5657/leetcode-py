@@ -44,9 +44,9 @@ class TreeNode:
 
 
 class Solution:
-    def bstFromPreorder(self, preorder: List[int]) -> TreeNode:
-        if not TreeNode:
-            return
+    def bstFromPreorder(self, preorder: List[int]) -> List:
+        if not preorder:
+            return None
         root = TreeNode(val=preorder[0])
 
         def construct(root, value):
@@ -63,7 +63,7 @@ class Solution:
 
         for value in preorder[1:]:
             construct(root, value)
-        return root
+        return self.sequence_compilation(root)
 
     def sequence_compilation(self, root):
         if not root:
@@ -72,13 +72,21 @@ class Solution:
         ret = []
         queue.append(root)
         while queue:
+            if queue.count('null') == queue.__len__():
+                break
             node = queue.popleft()
+            if node == 'null':
+                ret.append('null')
+                continue
             ret.append(node.val)
             if node.left:
                 queue.append(node.left)
-
+            else:
+                queue.append('null')
             if node.right:
                 queue.append(node.right)
+            else:
+                queue.append('null')
 
         return ret
 
