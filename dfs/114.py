@@ -33,9 +33,9 @@
 
 from typing import List
 
+
 # leetcode submit region begin(Prohibit modification and deletion)
 # Definition for a binary tree node.
-
 
 
 class TreeNode:
@@ -61,6 +61,7 @@ class Solution:
                 preoder(root.left)
             if root.right:
                 preoder(root.right)
+
         preoder(root)
         for i in range(len(cache) - 1):
             cache[i].left = None
@@ -68,7 +69,9 @@ class Solution:
 
 
 # leetcode submit region end(Prohibit modification and deletion)
-from tools.utils import createtree
-root = createtree(TreeNode, [1, 2, 5, 3, 4, None, 6])
-Solution().flatten(root)
-print(root)
+if __name__ == '__main__':
+    from tools.utils import createtree
+
+    root = createtree(TreeNode, [1, 2, 5, 3, 4, None, 6])
+    Solution().flatten(root)
+    print(root)
