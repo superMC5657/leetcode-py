@@ -35,3 +35,20 @@ def createtree(Node, l):
         return root
     else:
         return None
+
+
+def createListNode(node, l):
+    head = node(l[0])
+    tmp = head
+    for i in range(1, len(l)):
+        tmp.next = node(l[i])
+        tmp = tmp.next
+    return head
+
+
+def printListNode(head):
+    l = []
+    while head:
+        l.append(head.val)
+        head = head.next
+    return l
