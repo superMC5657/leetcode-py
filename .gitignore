@@ -3,3 +3,4 @@
 leetcode/editor/cn/*.json
 leetcode/editor/cn/*.md
 /leetcode/editor/cn/doc/
+*.DS_Store
