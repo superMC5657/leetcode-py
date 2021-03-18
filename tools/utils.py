@@ -51,4 +51,5 @@ def printListNode(head):
     while head:
         l.append(head.val)
         head = head.next
+    print(l)
     return l
