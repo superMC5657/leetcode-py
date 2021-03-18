@@ -60,7 +60,10 @@ class Solution:
             pre = pre.next
         cur = pre.next
         for _ in range(left, right):
-            next = cur.next
+            next = cur.next  # 选择下一个节点
+            cur.next = next.next  # 连接右边的节点
+            next.next = pre.next  # 指向左边的一个
+            pre.next = next  # pre 指向当前节点
 
         return dummy_node.next
 
