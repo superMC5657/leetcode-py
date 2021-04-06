@@ -49,33 +49,15 @@ from typing import List
 # leetcode submit region begin(Prohibit modification and deletion)
 class Solution:
     def clumsy(self, N: int) -> int:
-        # 处理4个一组的数字
-        def pending_nums(a, b, c, d):
-            return -int(a * b / c) + d
-
-        # 阶乘
-        def multi_num(num):
-            # 如果为0，这里返回0
-            if num == 0:
-                return 0
-            if num == 1:
-                return 1
-            return num * multi_num(num - 1)
-
-        # 小于4的N，直接返回N的阶乘
-        if N < 4:
-            return multi_num(N)
-        k = N // 4
-        result = 0
-        # 首先加上开头的2 * (int(N * (N - 1) / (N - 2))) ，目的为了4个一组方便处理
-        result += 2 * (int(N * (N - 1) / (N - 2)))
-        while k:
-            # 处理4个一组的数据
-            result = result + pending_nums(N, N - 1, N - 2, N - 3)
+        if N < 3:
+            return N
+        if N == 3:
+            return 6
+        sum = N * (N - 1) // (N - 2) + N - 3
+        N -= 4
+        while N >= 4:
+            sum += -(N * (N - 1) // (N - 2)) + N - 3
             N -= 4
-            k -= 1
-        # 不够4个一组的进行处理
-        if N < 4:
-            return result - multi_num(N)
+        return sum - self.clumsy(N)
 
 # leetcode submit region end(Prohibit modification and deletion)
