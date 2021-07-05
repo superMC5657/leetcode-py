@@ -53,5 +53,5 @@ class Solution:
 
 
 if __name__ == '__main__':
-    ret = Solution().rob([1, 7, 9, 2])
+    ret = Solution().rob([1, 7, 9, 2, 8, 4, 5, 6, 1, 2, 3, 4, 5])
     print(ret)
